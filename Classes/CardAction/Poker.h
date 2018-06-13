@@ -1,9 +1,9 @@
-#pragma once                             //Í¬Ò»¸öÎÄ¼ş²»»á±»°üº¬¶à´Î.
-#include "cocos2d.h"                     //cocos2dx ÉùÃ÷µÄº¯Êı¡¢Í·ÎÄ¼ş°üº¬µÄº¯Êı¿ÉÒÔ±»Ê¹ÓÃ
-#include "CardSet.h"                      //¼ûGlobal.h
-class GameScene;                         //GameScene µÄÇ°ÖÃÉùÃ÷
-USING_NS_CC;                             //Ê¹ÓÃÁËcocos2dµÄÃüÃû¿Õ¼ä
-class Poker : public Sprite              //Sprite ¾«ÁéÀà
+#pragma once                             //åŒä¸€ä¸ªæ–‡ä»¶ä¸ä¼šè¢«åŒ…å«å¤šæ¬¡.
+#include "cocos2d.h"                     //cocos2dx å£°æ˜çš„å‡½æ•°ã€å¤´æ–‡ä»¶åŒ…å«çš„å‡½æ•°å¯ä»¥è¢«ä½¿ç”¨
+#include "CardSet.h"                      //è§Global.h
+class GameScene;                         //GameScene çš„å‰ç½®å£°æ˜
+USING_NS_CC;                             //ä½¿ç”¨äº†cocos2dçš„å‘½åç©ºé—´
+class Poker : public Sprite              //Sprite ç²¾çµç±»
 {
 public:
 	Poker();
@@ -15,18 +15,18 @@ public:
 	virtual void onTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
 	virtual void onTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
 	virtual void onTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
-	void showFront();//ÏÔÊ¾ÕıÃæ
-	void showLast();//ÏÔÊ¾±³Ãæ
-	Poker* copy();//¿½±´
+	void showFront();//æ˜¾ç¤ºæ­£é¢
+	void showLast();//æ˜¾ç¤ºèƒŒé¢
+	Poker* copy();//æ‹·è´
 	void setTouchPriority(int num);
-	void SelectPkLuTou();//Èç¹ûÑ¡ÔñÁËÅÆ¾ÍÂ¶³öÍ·
-	void SelectPkSuoTou();//Èç¹ûÑ¡ÔñÁËÅÆ¾ÍËõÍ·
+	void SelectPkLuTou();//å¦‚æœé€‰æ‹©äº†ç‰Œå°±éœ²å‡ºå¤´
+	void SelectPkSuoTou();//å¦‚æœé€‰æ‹©äº†ç‰Œå°±ç¼©å¤´
 private:
-	CC_SYNTHESIZE(bool, m_isSelect, Select);//ÊÇ·ñÒÑÑ¡
+	CC_SYNTHESIZE(bool, m_isSelect, Select);//æ˜¯å¦å·²é€‰
 	CC_SYNTHESIZE(GameScene*, m_gameMain, GameMain);
-	CC_SYNTHESIZE(bool, m_isDianJi, DianJi);//ÊÇ·ñÄÜ±»µã»÷
-	CC_SYNTHESIZE(int, m_huaSe, HuaSe);//»¨É«
-	CC_SYNTHESIZE(int, m_num, Num);//ÅÆÖµ
+	CC_SYNTHESIZE(bool, m_isDianJi, DianJi);//æ˜¯å¦èƒ½è¢«ç‚¹å‡»
+	CC_SYNTHESIZE(int, m_huaSe, Suit);//èŠ±è‰²
+	CC_SYNTHESIZE(int, m_num, Num);//ç‰Œå€¼
 	EventListenerTouchOneByOne* touchListener;
 };
 
