@@ -55,7 +55,7 @@ bool GameScene::init(){
 		CC_BREAK_IF(!initBackGround());
 		CC_BREAK_IF(!createPokers());
 		CC_BREAK_IF(!initPlayer());
-		CC_BREAK_IF(!xiPai());
+		CC_BREAK_IF(!shuffle());
 		CC_BREAK_IF(!initAnNiu());
 		CC_BREAK_IF(!InitNpcBuChuLable());
 		//地主标签
@@ -96,7 +96,7 @@ bool GameScene::initBackGround()
 Poker* GameScene::selectPoker(int Suit,int num)
 {
 	Poker* pk;
-	if(Suit != Gui)
+	if(Suit != joker)
 		pk = Poker::create("poker.png",CCRect(num*pkWidth,huaSe*pkHeight,pkWidth,pkHeight));
 	else
 		pk = Poker::create("poker.png",CCRect((num-XiaoGui)*pkWidth,huaSe*pkHeight,pkWidth,pkHeight));
