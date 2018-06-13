@@ -13,7 +13,7 @@ GameScene::GameScene():m_isSend(true),m_iSendPk(0),m_iState(0),
 	m_player3= new Player();
 	m_Three = new Player();
 	m_player1Out = new Player();
-	m_plater2OneOut = new Player();
+	m_plater2Out = new Player();
 	m_player3Out = new Player();
 	m_arrPlayerOut = CCArray::create();
 	m_arrPlayerOut->retain();
