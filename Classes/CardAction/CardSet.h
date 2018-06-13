@@ -15,7 +15,7 @@ enum Suit
 //面值
 enum Value
 {
-	Three = 3, Four, Five, Six, Seven, Eight, Nine, Ten, J, Q, K, A, Two, jokerBlack, jokerRed,
+	Three = 0, Four, Five, Six, Seven, Eight, Nine, Ten, J, Q, K, A, Two, jokerBlack, jokerRed,
 };
 //牌型
 enum CARD_TYPE
