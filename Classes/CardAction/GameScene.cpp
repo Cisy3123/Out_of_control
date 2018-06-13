@@ -51,14 +51,14 @@ bool GameScene::init(){
 	do 
 	{
 		
-		srand((unsigned)time(NULL));//³õÊ¼»¯Ëæ»úÖÖ×Ó
+		srand((unsigned)time(NULL));//åˆå§‹åŒ–éšæœºç§å­
 		CC_BREAK_IF(!initBackGround());
 		CC_BREAK_IF(!createPokers());
 		CC_BREAK_IF(!initPlayer());
 		CC_BREAK_IF(!xiPai());
 		CC_BREAK_IF(!initAnNiu());
 		CC_BREAK_IF(!InitNpcBuChuLable());
-		//µØÖ÷±êÇ©
+		//åœ°ä¸»æ ‡ç­¾
 		Dictionary * strings = Dictionary::createWithContentsOfFile("strings.xml");
 		const char *str = ((String *)strings->objectForKey("dizhu"))->getCString();
 		m_lableDiZhu = CCLabelTTF::create(str,"Helvetica-BoldOblique",20);
@@ -111,7 +111,7 @@ bool GameScene::createPokers(){
 	{
 		Size size = Director::sharedDirector()->getVisibleSize();
 		Poker* pk;
-		//´´½¨52¸öÅÆ
+		//åˆ›å»º52ä¸ªç‰Œ
 		for (int i=0; i<4; ++i)
 		{
 			for (int j=0; j<13; ++j)
@@ -123,14 +123,14 @@ bool GameScene::createPokers(){
 				this->m_arrPokers->addObject(pk);
 			}
 		}
-		//´´½¨Ð¡¹í
-		pk = selectPoker(Gui,jokerBlack);
+		//åˆ›å»ºå°é¬¼
+		pk = selectPoker(joker,jokerBlack);
 		pk->setPosition(ccp(size.width/2,size.height/2/*-4*20*/));
 		pk->showLast();
 		this->addChild(pk);
 		this->m_arrPokers->addObject(pk);
-		//´´½¨´ó¹í
-		pk = selectPoker(Gui,jokerRed);
+		//åˆ›å»ºå¤§é¬¼
+		pk = selectPoker(joker,jokerRed);
 		pk->setPosition(ccp(size.width/2/*+20*/,size.height/2/*-4*20*/));
 		pk->showLast();
 		this->addChild(pk);
@@ -139,5 +139,4 @@ bool GameScene::createPokers(){
 	} while (0);
 	return isRet;
 }
-
 
