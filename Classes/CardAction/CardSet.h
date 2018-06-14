@@ -6,10 +6,10 @@ const int CardSpace = 20;//距
 //花色
 enum Suit
 {
-	spade = 0,
+	diamond = 0,
+	club，
 	heart,
-	club,
-	diamond,
+	spade,
 	joker,
 };
 //面值
