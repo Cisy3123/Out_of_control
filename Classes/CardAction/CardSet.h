@@ -38,10 +38,10 @@ enum CARD_TYPE
 };
 struct CardGroupData      //牌型组合数据结构
 {
-	CardType cType=ERROR_CARD;  //枚举类型
+	CARD_TYPE cType=ERROR_CARD;  //枚举类型
 	int nCount=0;       //含牌的个数
 	int nMaxCard=0;     //牌中决定大小的牌值
-}
+};
 struct CRAD_INDEX//分析飞机
 {
 	std::vector<int> single_index;//单张
