@@ -11,8 +11,8 @@ class CardData
 public:
 	CardData(){}
 	virtual ~CardData(){}
-	vector<int> value_CardList;//手牌序列-无花色，3~17
-	vector<int> color_CardList;//手牌序列-有花色，0~56
+	vector<int> value_CardList;//手牌序列-无花色，0~14
+	vector<int> color_CardList;//手牌序列-有花色，0~54
 	int value_iCardList[18] = { 0 };//手牌序列-状态记录，记录每张牌的数目
 	int CardCount = 17;//手牌个数
 	CardGroupData  PutCardType;//玩家要打出去的牌的类型
@@ -81,14 +81,22 @@ bool CardData::PutOneCard(int value_Card, int &color_Card)
 			break;
 		}
 	}
-	int k = (value_Card - 3) * 4;//数值转换，换成花色值
 	for (vector<int>::iterator iter = color_CardList.begin(); iter != color_CardList.end(); iter++)//color列表数据处理
 	{
-		for (int i = k; i < k + 4; i++)
+		if (value_Card==13||value_Card==14)
 		{
-			if (*iter == i)
+			if (*iter == 39 + value_Card)
 			{
-				color_Card = i;
+				color_Card = *iter;
+				color_CardList.erase(iter);
+				return ret;
+			}
+		}
+		for (int i = 0; i < 4; i++)
+		{
+			if (*iter == 13*i+value_Card)
+			{
+				color_Card = *iter;
 				color_CardList.erase(iter);
 				return ret;
 			}
