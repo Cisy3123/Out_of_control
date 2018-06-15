@@ -23,12 +23,13 @@ void CardData::Sort(vector<int> &arr)
 
 void CardData::get_valueCard()
 {
-	value_CardList.clear();                               //ÇåÁã
+	value_CardList.clear();                               //æ¸…é›¶
 	memset(value_iCardList, 0, sizeof(value_iCardList));
 	for (vector<int>::iterator iter = color_CardList.begin(); iter != color_CardList.end(); iter++)
 	{
-		value_CardList.push_back((*iter / 4) + 3);
-		value_iCardList[(*iter / 4) + 3]++;
+		int i = (*iter / 13) < 4 ? *iter % 13 : *iter - 39;
+		value_CardList.push_back(i);
+		value_iCardList[i]++;
 	}
 }
 
@@ -43,12 +44,12 @@ void CardData::Init()
 bool CardData::PutOneCard(int value_Card, int &color_Card)
 {
 	bool ret = false;
-	value_iCardList[value_Card]--;//value×´Ì¬Êı×é´¦Àí
+	value_iCardList[value_Card]--;//valueçŠ¶æ€æ•°ç»„å¤„ç†
 	if (value_iCardList[value_Card] < 0)
 	{
 		return false;
 	}
-	for (vector<int>::iterator iter = value_CardList.begin(); iter != value_CardList.end(); iter++)//valueÁĞ±íÊı×é´¦Àí
+	for (vector<int>::iterator iter = value_CardList.begin(); iter != value_CardList.end(); iter++)//valueåˆ—è¡¨æ•°ç»„å¤„ç†
 	{
 		if (*iter == value_Card)
 		{
@@ -57,7 +58,7 @@ bool CardData::PutOneCard(int value_Card, int &color_Card)
 			break;
 		}
 	}
-	for (vector<int>::iterator iter = color_CardList.begin(); iter != color_CardList.end(); iter++)//colorÁĞ±íÊı¾İ´¦Àí
+	for (vector<int>::iterator iter = color_CardList.begin(); iter != color_CardList.end(); iter++)//coloråˆ—è¡¨æ•°æ®å¤„ç†
 	{
 		if (value_Card == 13 || value_Card == 14)
 		{
