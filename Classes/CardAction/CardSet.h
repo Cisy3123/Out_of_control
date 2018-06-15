@@ -7,7 +7,7 @@ const int CardSpace = 20;//距
 enum Suit
 {
 	diamond = 0,
-	club，
+	club,
 	heart,
 	spade,
 	joker,
