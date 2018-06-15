@@ -9,6 +9,8 @@ using namespace std;
 class CardData
 {
 public:
+	CardData(){}
+	virtual ~CardData(){}
 	vector<int> value_CardList;//手牌序列-无花色，3~17
 	vector<int> color_CardList;//手牌序列-有花色
 	int value_iCardList[18] = { 0 };//手牌序列-状态记录
@@ -63,7 +65,7 @@ void CardData::Init()
 bool CardData::PutOneCard(int value_Card, int &color_Card)
 {
 	bool ret = false;
-	value_CardList[value_Card];
+	value_CardList[value_Card]--;
 	if (value_CardList[value_Card] < 0)
 	{
 		return false;
