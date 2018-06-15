@@ -1,6 +1,6 @@
 #pragma once                             //同一个文件不会被包含多次.
 #include "cocos2d.h"                     //cocos2dx 声明的函数、头文件包含的函数可以被使用
-#include "CardSet.h"                      //见Global.h
+#include "CardSet.h"                     //见CardSet.h
 class GameScene;                         //GameScene 的前置声明
 USING_NS_CC;                             //使用了cocos2d的命名空间
 class Poker : public Sprite              //Sprite 精灵类
