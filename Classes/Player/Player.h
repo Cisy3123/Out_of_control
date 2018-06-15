@@ -9,5 +9,5 @@ public:
 	~Player();
 	void call();//叫地主
 private:
-
+	
 };
