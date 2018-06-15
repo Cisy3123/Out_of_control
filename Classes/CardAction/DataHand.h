@@ -12,10 +12,10 @@ public:
 	CardData(){}
 	virtual ~CardData(){}
 	vector<int> value_CardList;//手牌序列-无花色，3~17
-	vector<int> color_CardList;//手牌序列-有花色
-	int value_iCardList[18] = { 0 };//手牌序列-状态记录
+	vector<int> color_CardList;//手牌序列-有花色，0~56
+	int value_iCardList[18] = { 0 };//手牌序列-状态记录，记录每张牌的数目
 	int CardCount = 17;//手牌个数
-	CARD_TYPE PutCardType;//玩家要打出去的牌的类型
+	CardGroupData  PutCardType;//玩家要打出去的牌的类型
 	vector<int> value_PutCard;//要打出去的牌-无花色
 	vector<int> color_PutCard;//要打出去的牌-有花色
 	void ClearPutCard();//清空要打出的牌
@@ -31,6 +31,8 @@ void CardData::ClearPutCard()
 {
 	color_PutCard.clear();
 	value_PutCard.clear();
+	PutCardType.cType = ERROR_CARD;
+	PutCardType.nMaxCard = -1;
 	return;
 }
 int cmp(int a, int b)
@@ -65,8 +67,8 @@ void CardData::Init()
 bool CardData::PutOneCard(int value_Card, int &color_Card)
 {
 	bool ret = false;
-	value_CardList[value_Card]--;
-	if (value_CardList[value_Card] < 0)
+	value_iCardList[value_Card]--;//value状态数组处理
+	if (value_iCardList[value_Card] < 0)
 	{
 		return false;
 	}
@@ -79,14 +81,14 @@ bool CardData::PutOneCard(int value_Card, int &color_Card)
 			break;
 		}
 	}
-	int k = (value_Card - 3) * 4;
-	for (vector<int>::iterator iter = color_CardList.begin(); iter != color_CardList.end(); iter++)
+	int k = (value_Card - 3) * 4;//数值转换，换成花色值
+	for (vector<int>::iterator iter = color_CardList.begin(); iter != color_CardList.end(); iter++)//color列表数据处理
 	{
 		for (int i = k; i < k + 4; i++)
 		{
-			if (*iter == 1)
+			if (*iter == i)
 			{
-				color_Card = 1;
+				color_Card = i;
 				color_CardList.erase(iter);
 				return ret;
 			}
