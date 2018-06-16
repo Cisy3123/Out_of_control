@@ -23,7 +23,8 @@ enum CARD_TYPE
 	SINGLE_CARD,       //单牌-
 	DOUBLE_CARD,        //对子-
 	THREE_CARD,         //3不带-
-	BOMB_CARD,          //炸弹
+	BOMB_CARD,          //炸弹-非王炸
+	KING_CARD,          //王炸
 	THREE_ONE_CARD,	    //3带1-
 	THREE_TWO_CARD,	    //3带2-
 	BOMB_TWO_CARD,      //四个带2张单牌
@@ -32,7 +33,7 @@ enum CARD_TYPE
 	COMPANY_CARD,       //连队-
 	AIRCRAFT_CARD,       //飞机不带-
 	AIRCRAFT_SINGLE_CARD,	//飞机带单牌-
-	AIRCRAFT_DOBULE_CARD,	//飞机带对子-
+	AIRCRAFT_DOUBLE_CARD,	//飞机带对子-
 	ERROR_CARD,			  //错误的牌型
 };
 struct CardGroupData      //牌型组合数据结构
