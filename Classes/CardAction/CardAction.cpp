@@ -70,26 +70,15 @@ void CardAction::Sort(vector<int> &arr)//整理牌
 	sort(arr.begin(), arr.end(), cmp);
 };
 
-bool aircraft()//是否飞机
+void CardAction::ClearPutCard()//出牌后，清空原选中的牌
 {
-
+	color_PutCard.clear();
+	PutCardType.cType = ERROR_CARD;
+	PutCardType.nMaxCard = -1;
 }
 
-bool pair()//是否对子
+void CardAction::Arrange()//整理现有手牌
 {
-
-}
-
-bool pairs()//是否连对
-{
-
-}
-
-bool straight()//是否顺子
-{
-
-}
-bool bomb()//是否炸弹
-{
-
+	Sort(color_CardList);
+	CardCount = color_CardList.size();
 }
