@@ -1,4 +1,6 @@
 #include"CardAction.h"
+#include"Poker.h"
+#include"Player.h"
 #include<time.h> 
 #include<stdlib.h>
 #include<vector>
