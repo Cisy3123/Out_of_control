@@ -1,5 +1,6 @@
 #pragma once
 #include"CardSet.h"
+#include"Poker.h"
 
 class CardData
 {
