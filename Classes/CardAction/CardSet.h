@@ -20,8 +20,6 @@ enum Value
 //牌型
 enum CARD_TYPE
 {
-	ERROR_CARD=-1,	  //错误的牌型
-	ZERO_CARD=0,      //不出
 	SINGLE_CARD,       //单牌-
 	DOUBLE_CARD,        //对子-
 	THREE_CARD,         //3不带-
@@ -35,11 +33,12 @@ enum CARD_TYPE
 	AIRCRAFT_CARD,       //飞机不带-
 	AIRCRAFT_SINGLE_CARD,	//飞机带单牌-
 	AIRCRAFT_DOBULE_CARD,	//飞机带对子-
+	ERROR_CARD,			  //错误的牌型
 };
 struct CardGroupData      //牌型组合数据结构
 {
 	CARD_TYPE cType=ERROR_CARD;  //枚举类型
-	int nCount=0;       //含牌的个数
+	std::vector<Poker*> vec;     //手牌
 	int nMaxCard=0;     //牌中决定大小的牌值
 };
 struct CRAD_INDEX//分析飞机
