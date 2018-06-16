@@ -4,10 +4,12 @@
 #include<time.h> 
 #include<stdlib.h>
 #include<vector>
+#include<algorithm>
 USING_NS_CC;
 
 CardAction::CardAction();
 CardAction::~CardAction();
+
 bool CardAction::shuffle()//随机洗牌
 {
 	bool isRet = false;
@@ -23,6 +25,7 @@ bool CardAction::shuffle()//随机洗牌
 	} while (0);
 	return isRet;
 };
+
 void CardAction::deal()//发牌
 {
 	Poker* pk;
@@ -54,10 +57,19 @@ void CardAction::deal()//发牌
 		m_iState = 1;
 	}
 }
-void CardAction::sort()//整理牌
-{
 
+bool cmp(int a, int b)
+{
+	int i = (a / 13)<4 ? a % 13 : a - 39;
+	int j = (b / 13)<4 ? b % 13 : b - 39;
+	return a>b;
+}
+
+void CardAction::Sort(vector<int> &arr)//整理牌
+{
+	sort(arr.begin(), arr.end(), cmp);
 };
+
 bool aircraft()//是否飞机
 {
 

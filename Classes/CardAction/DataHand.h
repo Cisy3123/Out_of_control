@@ -9,7 +9,6 @@ public:
 	virtual ~CardData(){}
 	CardGroupData  PutCardType;//玩家要打出去的牌的类型
 	void ClearPutCard();//清空要打出的牌
-	void Sort(vector<int> &arr);//手牌排序，大牌靠前
 	bool PutOneCard(int value_Card, int &clear_Card);//出一张牌，返回操作是否合法
 	bool PutCards();//出一组牌，返回操作是否合法
 	void get_valueCard();//通过有花色牌获取无花色牌

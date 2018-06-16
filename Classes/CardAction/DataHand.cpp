@@ -11,15 +11,6 @@ void CardData::ClearPutCard()
 	PutCardType.nMaxCard = -1;
 	return;
 }
-int cmp(int a, int b)
-{
-	return a > b ? 1 : 0;
-}
-void CardData::Sort(vector<int> &arr)
-{
-	sort(arr.begin(), arr.end(), cmp);
-	return;
-}
 
 void CardData::get_valueCard()
 {
