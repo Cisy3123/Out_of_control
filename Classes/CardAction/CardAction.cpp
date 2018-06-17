@@ -82,3 +82,8 @@ void CardAction::Arrange()//整理现有手牌
 	Sort(color_CardList);
 	CardCount = color_CardList.size();
 }
+
+CardGroupData CardAction:: NowCardGroup()
+{
+	return NowCardGroup;
+}
