@@ -17,7 +17,8 @@ public:
 	void changeNowCard();//出牌后，改变当前打出的牌的类型数据
 	void ClearPutCard();//出牌后，清空原选中的牌
 	void Arrange();//整理现有手牌
-	CardGroupData NowCardGroup() //提供当前打出的牌的信息;
+	CardGroupData NowCardGroup(); //提供当前打出的牌的信息
+	void copyTOtemp();//把当前场上的copy到temp
 	bool find_Cards(CardGroupData temp);//找到对于当前牌的解决方案
 private:
 	CardGroupData NowCardGroup;//当前打出牌的类型数据

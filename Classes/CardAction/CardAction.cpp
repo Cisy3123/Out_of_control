@@ -12,10 +12,12 @@ CardAction::~CardAction();
 
 CardAction::CardAction()
 {
+
 }
 
 CardAction::~CardAction()
 {
+
 }
 
 bool CardAction::shuffle()//随机洗牌
@@ -474,7 +476,7 @@ void CardAction::Arrange()//整理现有手牌
 	Sort(color_CardList);
 	CardCount = color_CardList.size();
 }
-
+//........................
 bool CardAction::find_Cards(CardGroupData temp)
 {
 	return false;
@@ -483,4 +485,11 @@ bool CardAction::find_Cards(CardGroupData temp)
 CardGroupData CardAction:: NowCardGroup()
 {
 	return NowCardGroup;
+}
+
+void CardAction::copyTOtemp()
+{
+	temp.cType = NowCardGroup.cType;
+	temp.nCount = NowCardGroup.nCount;
+	temp.nMaxCard = NowCardGroup.nMaxCard;
 }
