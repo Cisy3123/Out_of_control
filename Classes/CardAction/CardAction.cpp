@@ -81,10 +81,10 @@ void CardAction::Sort(vector<int> &arr)//整理牌
 }
 
 //输入要判断的vector，返回牌型组合数据结构
-CardGroupData CardAction::CardsType(vector<int> color_PutCard)
+CardGroupData CardAction::CardsType(vector<int> Card)
 {
 	int CardList[15] = { 0 };
-	for (vector<int>::iterator iter = color_PutCard.begin(); iter != color_PutCard.end(); iter++)
+	for (vector<int>::iterator iter = Card.begin(); iter != Card.end(); iter++)
 	{
 		int i = (*iter / 13) < 4 ? *iter % 13 : *iter - 39;
 		CardList[i]++;
@@ -466,9 +466,6 @@ void CardAction::changeNowCard()
 void CardAction::ClearPutCard()//出牌后，清空原选中的牌
 {
 	color_PutCard.clear();
-	PutCardType.cType = ERROR_CARD;
-	PutCardType.nMaxCard = -1;
-	PutCardType.nCount = 0;
 }
 
 void CardAction::Arrange()//整理现有手牌
@@ -476,20 +473,525 @@ void CardAction::Arrange()//整理现有手牌
 	Sort(color_CardList);
 	CardCount = color_CardList.size();
 }
-//........................
-bool CardAction::find_Cards(CardGroupData temp)
+
+void CardAction::getCardList()
 {
+	for (vector<int>::iterator iter = color_CardList.begin(); iter != color_CardList.end(); iter++)
+	{
+		int i = (*iter / 13) < 4 ? *iter % 13 : *iter - 39;
+		HandCardList[i]++;
+	}
+}
+
+void CardAction::copyTOtemp()//copy场上牌到temp
+{
+	for (vector<int>::iterator iter = NowCard.begin(); iter != NowCard.end(); iter++)
+		temp.push_back(*iter);
+}
+
+bool CardAction::find_Cards()//根据temp给出不同的提示
+{
+	CardGroupData tempCardGroup= CardsType(vector<int> temp);
+	if (tempCardGroup.cType = SINGLE_CARD)//单牌
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 15; i++)
+		{
+			if (HandCardList[i] > 0)
+			{
+				temp.clear();
+				temp.push_back(i);
+				return true;
+			}
+		}
+	}
+	else if (tempCardGroup.cType = DOUBLE_CARD)//对子
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 15; i++)
+		{
+			if (HandCardList[i] > 1)
+			{
+				temp.clear();
+				temp.push_back(i);
+				temp.push_back(i);
+				return true;
+			}
+		}
+	}
+	else if (tempCardGroup.cType = THREE_CARD)//三不带
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 12; i++)
+		{
+			if (HandCardList[i] > 2)
+			{
+				temp.clear();
+				temp.push_back(i);
+				temp.push_back(i);
+				temp.push_back(i);
+				return true;
+			}
+		}
+	}
+	else if (tempCardGroup.cType = BOMB_CARD)//炸弹-非王炸
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
+		{
+			if (tempHandCardList[i] == 4)
+			{
+				temp.clear();
+				temp.push_back(i);
+				temp.push_back(i);
+				temp.push_back(i);
+				temp.push_back(i);
+				return true;
+			}
+		}
+	}
+	else if (tempCardGroup.cType = THREE_ONE_CARD)//三带一
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
+		{
+			if (HandCardList[i] > 2)
+			{
+				for (int j = 0; j < 15; j++)
+				{
+					//选出一张以上的牌且不是选择三张的那个牌  
+					if (HandCardList[j] > 0 && j != i)
+					{
+						temp.clear();
+						temp.push_back(i);
+						temp.push_back(i);
+						temp.push_back(i);
+						temp.push_back(j);
+						return true;
+					}
+				}
+			}
+		}
+	}
+	else if (tempCardGroup.cType = THREE_TWO_CARD)//三带对
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
+		{
+			if (HandCardList[i] > 2)
+			{
+				for (int j = 0; j < 13; j++)
+				{
+					//选出一张以上的牌且不是选择三张的那个牌  
+					if (HandCardList[j] > 1 && j != i)
+					{
+						temp.clear();
+						temp.push_back(i);
+						temp.push_back(i);
+						temp.push_back(i);
+						temp.push_back(j);
+						temp.push_back(j);
+						return true;
+					}
+				}
+			}
+		}
+	}
+	else if (tempCardGroup.cType = BOMB_TWO_CARD)//四带两单
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
+		{
+			if (HandCardList[i] == 4)
+			{
+				for (int j = 0; j < 15; j++)
+				{
+					//先选出一张以上的牌且不是选择四张的那个牌  
+					if (HandCardList[j] > 0 && j != i)
+					{
+						//再选出一张以上的牌且不是选择四张的那个牌且不是第一次选的那个牌（策略里四带二不带一对）  
+						for (int k = j + 1; k < 15; k++)
+						{
+							if (HandCardList[k] > 0 && k != i)
+							{
+								temp.clear();
+								temp.push_back(i);
+								temp.push_back(i);
+								temp.push_back(i);
+								temp.push_back(i);
+								temp.push_back(j);
+								temp.push_back(k);
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	else if (tempCardGroup.cType = BOMB_TWOOO_CARD)//四带两对
+	{
+		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
+		{
+			if (HandCardList[i] == 4)
+			{
+				for (int j = 0; j < 15; j++)
+				{
+					//先选出两张以上的牌且不是选择四张的那个牌  
+					if (HandCardList[j] > 1 && j != i)
+					{
+						//再选出两张张以上的牌且不是选择四张的那个牌且不是第一次选的那个牌  
+						for (int k = j + 1; k < 15; k++)
+						{
+							if (HandCardList[k] > 1 && k != i)
+							{
+								temp.clear();
+								temp.push_back(i);
+								temp.push_back(i);
+								temp.push_back(i);
+								temp.push_back(i);
+								temp.push_back(j);
+								temp.push_back(j);
+								temp.push_back(k);
+								temp.push_back(k);
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	else if (tempCardGroup.cType = CONNECT_CARD)//单连
+	{
+		int prov = 0;//用于验证的变量
+		int start;
+		int end;   //记录开始与结束
+		int length = tempCardGroup.nCount;//单连长度
+		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
+		{
+			if (HandCardList[i] > 0)
+			{
+				prov++;
+			}
+			else
+			{
+				prov = 0;
+			}
+			if (prov == length)
+			{
+				end = i;
+				start = i - length + 1;
+				temp.clear();
+				for (int j = start; j <= end; j++)
+				{
+					temp.push_back(j);
+				}
+				return true;
+			}
+		}
+	}
+	else if (tempCardGroup.cType = COMPANY_CARD)//连队
+	{
+		int prov = 0;//用于验证的变量
+		int start;
+		int end;
+		int length = tempCardGroup.nCount/2;//单连长度
+		//2与王不参与飞机，从当前已打出的飞机最小牌值+1开始遍历  
+		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
+		{
+			if (HandCardList[i] > 1)
+			{
+				prov++;
+			}
+			else
+			{
+				prov = 0;
+			}
+			if (prov == length)
+			{
+				end = i;
+				start = i - length + 1;
+				temp.clear();
+				for (int j = start; j <= end; j++)
+				{
+					temp.push_back(j);
+					temp.push_back(j);
+				}
+				return true;
+			}
+		}
+				
+	}
+	else if (tempCardGroup.cType = AIRCRAFT_CARD)//飞机不带
+	{
+		int prov = 0;  
+		int start_i = 0;//飞机起点
+		int end_i = 0;//飞机终点
+		int length = clsGameSituation.uctNowCardGroup.nCount / 3;//飞机长度  
+		//2与王不参与飞机，从当前已打出的飞机最小牌值+1开始遍历  
+		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
+		{
+			if (HandCardList[i] > 2)
+			{
+				prov++;
+			}
+			else
+			{
+				prov = 0;
+			}
+			if (prov == length)
+			{
+				end_i = i;
+				start_i = i - length + 1;
+				temp.clear();
+				for (int j = start_i; j <= end_i; j++)
+				{
+					temp.push_back(j);
+					temp.push_back(j);
+					temp.push_back(j);
+				}
+				return true;
+			}
+		}
+	}
+	else if (tempCardGroup.cType = AIRCRAFT_SINGLE_CARD)//飞机带单牌
+	{
+		//验证飞机的标志  
+		int prov = 0;
+		//飞机起点  
+		int start_i = 0;
+		//飞机终点  
+		int end_i = 0;
+		//飞机长度  
+		int length = clsGameSituation.uctNowCardGroup.nCount / 4;
+		//2与王不参与飞机，从当前已打出的飞机最小牌值+1开始遍历  
+		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
+		{
+			if (HandCardList[i] > 2)
+			{
+				prov++;
+			}
+			else
+			{
+				prov = 0;
+			}
+			if (prov == length)
+			{
+				end_i = i;
+				start_i = i - length + 1;
+				//考虑到当飞机长度也就是在2-4之间，所以做三个分支处理
+				//为两连飞机  
+				if (length == 2)
+				{
+					for (int j = 0; j < 15; j++)
+					{
+						if (HandCardList[j] > 0)
+						{
+							for (int k = 0; k < 15; k++)
+							{
+								if (HandCardList[k] > 0)
+								{
+									temp.clear();
+									for (int l = start_i; l <= end_i; l++)
+									{
+										temp.push_back(l);
+										temp.push_back(l);
+										temp.push_back(l);
+									}
+									temp.push_back(j);
+									temp.push_back(k);
+									return true;
+								}
+							}
+						}
+					}
+				}
+				//为三连飞机
+				if (length == 3)
+				{
+					for (int j = 0; j < 15; j++)
+					{
+						if (HandCardList[j] > 0)
+						{
+							for (int k = 0; k < 15; k++)
+							{
+								if (HandCardList[k] > 0)
+								{
+									for (int l = 0; l < 15; l++)
+									{
+										if (HandCardList[l] > 0)
+										{
+											temp.clear();
+											for (int m = start_i; m <= end_i; m++)
+											{
+												temp.push_back(m);
+												temp.push_back(m);
+												temp.push_back(m);
+											}
+											temp.push_back(j);
+											temp.push_back(k);
+											temp.push_back(l);
+											return true;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				//为四连飞机
+				if (length == 4)
+				{
+					for (int j = 0; j < 15; j++)
+					{
+						if (HandCardList[j] > 0)
+						{
+							for (int k = 0; k < 15; k++)
+							{
+								if (HandCardList[k] > 0)
+								{
+									for (int l = 0; l < 15; l++)
+									{
+										if (HandCardList[l] > 0)
+										{
+											for (int m = 3; m < 18; m++)
+											{
+												if (HandCardList[m] > 0)
+												{
+													temp.clear();
+													for (int n = start_i; n <= end_i; n++)
+													{
+														temp.push_back(n);
+														temp.push_back(n);
+														temp.push_back(n);
+													}
+													temp.push_back(j);
+													temp.push_back(k);
+													temp.push_back(l);
+													temp.push_back(m);
+													return true;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	else if (tempCardGroup.cType = AIRCRAFT_DOUBLE_CARD)//飞机带对子
+	{
+
+		//验证飞机的标志  
+		int prov = 0;
+		//飞机起点  
+		int start_i = 0;
+		//飞机终点  
+		int end_i = 0;
+		//飞机长度  
+		int length = clsGameSituation.uctNowCardGroup.nCount / 4;
+		//2与王不参与飞机，从当前已打出的飞机最小牌值+1开始遍历  
+		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
+		{
+			if (HandCardList[i] > 2)
+			{
+				prov++;
+			}
+			else
+			{
+				prov = 0;
+			}
+			if (prov == length)
+			{
+				end_i = i;
+				start_i = i - length + 1;
+				//考虑到当飞机长度也就是在2-3之间，所以做两个分支处理
+				//为两连飞机  
+				if (length == 2)
+				{
+					for (int j = 0; j < 15; j++)
+					{
+						if (HandCardList[j] > 1)
+						{
+							for (int k = 0; k < 15; k++)
+							{
+								if (HandCardList[k] > 1)
+								{
+									temp.clear();
+									for (int l = start_i; l <= end_i; l++)
+									{
+										temp.push_back(l);
+										temp.push_back(l);
+										temp.push_back(l);
+									}
+									temp.push_back(j);
+									temp.push_back(j);
+									temp.push_back(k);
+									temp.push_back(k);
+									return true;
+								}
+							}
+						}
+					}
+				}
+				//为三连飞机
+				if (length == 3)
+				{
+					for (int j = 0; j < 15; j++)
+					{
+						if (HandCardList[j] > 1)
+						{
+							for (int k = 0; k < 15; k++)
+							{
+								if (HandCardList[k] > 1)
+								{
+									for (int l = 0; l < 15; l++)
+									{
+										if (HandCardList[l] > 1)
+										{
+											temp.clear();
+											for (int m = start_i; m <= end_i; m++)
+											{
+												temp.push_back(m);
+												temp.push_back(m);
+												temp.push_back(m);
+											}
+											temp.push_back(j);
+											temp.push_back(j);
+											temp.push_back(k);
+											temp.push_back(k);
+											temp.push_back(l);
+											temp.push_back(l);
+											return true;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	//直接出炸弹
+	else if (tempCardGroup.cType != BOMB_CARD && tempCardGroup.cType != KING_CARD)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			if (HandCardList[i] == 4)
+			{
+				temp.clear();
+				temp.push_back(i);
+				temp.push_back(i);
+				temp.push_back(i);
+				temp.push_back(i);
+				return true;
+			}
+		}
+	}
 	return false;
 }
 
-CardGroupData CardAction:: NowCardGroup()
+//点击提示就copy场上牌，调用find_Cards函数，把temp传递到PutCard,如果继续点提示，就再次调用find_Cards函数，把temp传递到PutCard
+void CardAction::tempTOput()
 {
-	return NowCardGroup;
-}
-
-void CardAction::copyTOtemp()
-{
-	temp.cType = NowCardGroup.cType;
-	temp.nCount = NowCardGroup.nCount;
-	temp.nMaxCard = NowCardGroup.nMaxCard;
+	for (vector<int>::iterator iter = temp.begin(); iter != temp.end(); iter++)
+		color_PutCard.push_back(*iter);
 }

@@ -13,18 +13,19 @@ public:
 	bool shuffle();//洗牌
 	void deal();//发牌
 	void Sort(vector<int> &arr);//整理牌
-	CardGroupData CardsType(vector<int> color_PutCard); //给出牌型组合
-	void changeNowCard();//出牌后，改变当前打出的牌的类型数据
+	CardGroupData CardsType(vector<int> Card); //给出牌型组合
+	void changeNowCard();//出牌后，更新当前打出的牌
 	void ClearPutCard();//出牌后，清空原选中的牌
 	void Arrange();//整理现有手牌
-	CardGroupData NowCardGroup(); //提供当前打出的牌的信息
 	void copyTOtemp();//把当前场上的copy到temp
-	bool find_Cards(CardGroupData temp);//找到对于当前牌的解决方案
+	void tempTOput();//把temp传递到color_PutCard
+	bool find_Cards();//找到对于当前牌的解决方案
+	void getCardList();//由手牌序列得到状态数组
 private:
-	CardGroupData NowCardGroup;//当前打出牌的类型数据
-	CardGroupData PutCardType;//选中的牌的类型数据
-	vector<int> color_PutCard;//选中的牌
 	int CardCount;//手牌个数
-	CardGroupData temp;//针对当前牌的临时解决方案
+	int HandCardList[15];//手牌状态数组
+	vector<int> NowCard;//当前打出的牌
+	vector<int> color_PutCard;//选中的牌
+	vector<int> temp;//针对当前牌的临时解决方案
 	vector<int> color_CardList;//手牌序列，0~54
 };
