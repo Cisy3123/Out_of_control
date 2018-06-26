@@ -55,7 +55,7 @@ void CardAction::deal()//·¢ÅÆ
 	{
 		pk = (Poker*)m_arrPokers->objectAtIndex(m_iSendPk);
 		pk->showFront();
-		MovePk(m_Three, pk);
+		MovePk(m_Three,pk);
 		++m_iSendPk;
 		m_isSend = false;
 	}

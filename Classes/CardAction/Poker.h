@@ -25,7 +25,7 @@ private:
 	CC_SYNTHESIZE(bool, m_isSelect, Select);//是否已选
 	CC_SYNTHESIZE(GameScene*, m_gameMain, GameMain);
 	CC_SYNTHESIZE(bool, m_isDianJi, DianJi);//是否能被点击
-	CC_SYNTHESIZE(int, m_huaSe, Suit);//花色
+	CC_SYNTHESIZE(int, m_Suit, Suit);//花色
 	CC_SYNTHESIZE(int, m_num, Num);//牌值
 	EventListenerTouchOneByOne* touchListener;
 };
