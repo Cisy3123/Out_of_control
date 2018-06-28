@@ -9,8 +9,11 @@ class Player : public CCObject
 public:
 	Player();
 	~Player();
+<<<<<<< HEAD:Classes/Player/Player.h
 	void updatePkWeiZhi();//设置牌的位置
 
+=======
+>>>>>>> be0b47c8f2d34895abe1c9bcb3781cc72d987b96:Classes/Player.h
 private:
 	CC_SYNTHESIZE(bool, m_isDiZhu, IsDiZhu);//是否为地主
 	CC_SYNTHESIZE(bool, m_isCall, Call);//是否已叫地主
