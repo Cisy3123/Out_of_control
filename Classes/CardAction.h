@@ -10,22 +10,24 @@ class CardAction
 public:
 	CardAction();
 	~CardAction();
-	bool shuffle();//Ï´ÅÆ
-	void deal();//·¢ÅÆ
-	void Sort(vector<int> &arr);//ÕûÀíÅÆ
-	CardGroupData CardsType(vector<int> Card); //¸ø³öÅÆĞÍ×éºÏ
-	void changeNowCard();//³öÅÆºó£¬¸üĞÂµ±Ç°´ò³öµÄÅÆ
-	void ClearPutCard();//³öÅÆºó£¬Çå¿ÕÔ­Ñ¡ÖĞµÄÅÆ
-	void Arrange();//ÕûÀíÏÖÓĞÊÖÅÆ
-	void copyTOtemp();//°Ñµ±Ç°³¡ÉÏµÄcopyµ½temp
-	void tempTOput();//°Ñtemp´«µİµ½color_PutCard
-	bool find_Cards();//ÕÒµ½¶ÔÓÚµ±Ç°ÅÆµÄ½â¾ö·½°¸
-	void getCardList();//ÓÉÊÖÅÆĞòÁĞµÃµ½×´Ì¬Êı×é
+	bool shuffle();//æ´—ç‰Œ
+	void deal();//å‘ç‰Œ
+	void Sort(vector<int> &arr);//æ•´ç†ç‰Œ
+	CardGroupData CardsType(vector<int> Card); //ç»™å‡ºç‰Œå‹ç»„åˆ
+	void changeNowCard();//å‡ºç‰Œåï¼Œæ›´æ–°å½“å‰æ‰“å‡ºçš„ç‰Œ
+	void ClearPutCard();//å‡ºç‰Œåï¼Œæ¸…ç©ºåŸé€‰ä¸­çš„ç‰Œ
+	void Arrange();//æ•´ç†ç°æœ‰æ‰‹ç‰Œ
+	void copyTOtemp();//æŠŠå½“å‰åœºä¸Šçš„copyåˆ°temp
+	void tempTOput();//æŠŠtempä¼ é€’åˆ°color_PutCard
+	bool find_Cards();//æ‰¾åˆ°å¯¹äºå½“å‰ç‰Œçš„è§£å†³æ–¹æ¡ˆ
+	void getCardList();//ç”±æ‰‹ç‰Œåºåˆ—å¾—åˆ°çŠ¶æ€æ•°ç»„
+	bool JudgePutCard();//åˆ¤æ–­ç©å®¶é€‰ä¸­çš„ç‰Œæ˜¯å¦å¯ä»¥å‡ºï¼ˆè¢«åŠ¨å‡ºç‰Œï¼‰
+	bool iJudgePutCard();//åˆ¤æ–­ç©å®¶é€‰ä¸­çš„ç‰Œæ˜¯å¦å¯ä»¥å‡ºï¼ˆä¸»åŠ¨å‡ºç‰Œï¼‰
 private:
-	int CardCount;//ÊÖÅÆ¸öÊı
-	int HandCardList[15];//ÊÖÅÆ×´Ì¬Êı×é
-	vector<int> NowCard;//µ±Ç°´ò³öµÄÅÆ
-	vector<int> color_PutCard;//Ñ¡ÖĞµÄÅÆ
-	vector<int> temp;//Õë¶Ôµ±Ç°ÅÆµÄÁÙÊ±½â¾ö·½°¸
-	vector<int> color_CardList;//ÊÖÅÆĞòÁĞ£¬0~54
+	int CardCount;//æ‰‹ç‰Œä¸ªæ•°
+	int HandCardList[15];//æ‰‹ç‰ŒçŠ¶æ€æ•°ç»„
+	vector<int> NowCard;//å½“å‰æ‰“å‡ºçš„ç‰Œ
+	vector<int> color_PutCard;//é€‰ä¸­çš„ç‰Œ
+	vector<int> temp;//é’ˆå¯¹å½“å‰ç‰Œçš„ä¸´æ—¶è§£å†³æ–¹æ¡ˆ
+	vector<int> color_CardList;//æ‰‹ç‰Œåºåˆ—ï¼Œ0~54
 };
