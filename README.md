@@ -1,2 +1,25 @@
-# Out_of_control
-Just something out of control
+# Out_Of_Control
+
+## 组员
+
+> * WYH
+> * ZQ
+> * WSQ
+
+## 项目选题：
+> * 斗地主
+
+## 基础功能实现
+> * 支持⾃动发牌
+> * 支持叫地主
+> * 支持⼿牌显⽰，选牌
+> * 支持基本牌型（单张，对⼦，三带⼀，顺⼦，⻜机，炸弹等）
+## 额外功能实现
+> * 支持发牌动画
+
+## 玩法介绍
+> ![photo](http://r.photo.store.qq.com/psb?/V13UvKcT1vkCkM/RUsNiQExvy*Prifxrxpyq1UtqaeXSiemJLcprmbMGz0!/r/dFYAAAAAAAAA)
+> 进入游戏界面后点击【进入游戏】，开始新游戏
+> 发牌完成后，玩家首先选择是否叫地主，若【叫地主】，则玩家是地主；若选择【不叫】，则随机一个电脑玩家为地主。
+> 游戏过程中，若玩家手牌中有能大过上家出的牌时，【提示】按钮可选，若无则不可选。
+> 最先出完牌的一方获胜。
