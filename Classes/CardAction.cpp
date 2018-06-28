@@ -20,7 +20,7 @@ CardAction::~CardAction()
 
 }
 
-bool CardAction::shuffle()//Ëæ»úÏ´ÅÆ
+bool CardAction::shuffle()//éšæœºæ´—ç‰Œ
 {
 	bool isRet = false;
 	do
@@ -36,17 +36,17 @@ bool CardAction::shuffle()//Ëæ»úÏ´ÅÆ
 	return isRet;
 };
 
-void CardAction::deal()//·¢ÅÆ
+void CardAction::deal()//å‘ç‰Œ
 {
 	Poker* pk;
 	if (m_iSendPk<51 && m_isSend)
 	{
 		pk = (Poker*)m_arrPokers->objectAtIndex(m_iSendPk);
-		if (m_iSendPk % 3 == 0)//¸øÍæ¼Ò1·¢ÅÆ
+		if (m_iSendPk % 3 == 0)//ç»™ç©å®¶1å‘ç‰Œ
 			MovePk(m_player1, pk);
-		else if (m_iSendPk % 3 == 1)//¸øÍæ¼Ò2·¢ÅÆ
+		else if (m_iSendPk % 3 == 1)//ç»™ç©å®¶2å‘ç‰Œ
 			MovePk(m_player2, pk);
-		else if (m_iSendPk % 3 == 2)//¸øÍæ¼Ò3·¢ÅÆ
+		else if (m_iSendPk % 3 == 2)//ç»™ç©å®¶3å‘ç‰Œ
 			MovePk(m_player3, pk);
 		++m_iSendPk;
 		m_isSend = false;
@@ -75,12 +75,12 @@ bool cmp(int a, int b)
 	return a>b;
 }
 
-void CardAction::Sort(vector<int> &arr)//ÕûÀíÅÆ
+void CardAction::Sort(vector<int> &arr)//æ•´ç†ç‰Œ
 {
 	sort(arr.begin(), arr.end(), cmp);
 }
 
-//ÊäÈëÒªÅĞ¶ÏµÄvector£¬·µ»ØÅÆĞÍ×éºÏÊı¾İ½á¹¹
+//è¾“å…¥è¦åˆ¤æ–­çš„vectorï¼Œè¿”å›ç‰Œå‹ç»„åˆæ•°æ®ç»“æ„
 CardGroupData CardAction::CardsType(vector<int> Card)
 {
 	int CardList[15] = { 0 };
@@ -99,10 +99,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 	retCardGroupData.nCount = nCount;
 
 
-	//µ¥ÅÆÀàĞÍ  
+	//å•ç‰Œç±»å‹  
 	if (nCount == 1)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov = 0;
 		for (int i = 0; i < 15; i++)
 		{
@@ -118,10 +118,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//¶ÔÅÆÀàĞÍ  
+	//å¯¹ç‰Œç±»å‹  
 	if (nCount == 2)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov = 0;
 		for (int i = 0; i < 13; i++)
 		{
@@ -137,10 +137,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//Èı²»´ø 
+	//ä¸‰ä¸å¸¦ 
 	if (nCount == 3)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov = 0;
 		for (int i = 0; i < 13; i++)
 		{
@@ -156,10 +156,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//Èı´øÒ»µ¥  
+	//ä¸‰å¸¦ä¸€å•  
 	if (nCount == 4)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov1 = 0;
 		int prov2 = 0;
 		for (int i = 0; i < 13; i++)
@@ -182,10 +182,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//Èı´øÒ»¶Ô  
+	//ä¸‰å¸¦ä¸€å¯¹  
 	if (nCount == 5)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov1 = 0;
 		int prov2 = 0;
 		for (int i = 0; i < 13; i++)
@@ -208,10 +208,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//ËÄ´øÁ½µ¥  
+	//å››å¸¦ä¸¤å•  
 	if (nCount == 6)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov1 = 0;
 		int prov2 = 0;
 		for (int i = 0; i < 13; i++)
@@ -234,10 +234,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//ËÄ´øÁ½¶Ô  
+	//å››å¸¦ä¸¤å¯¹  
 	if (nCount == 8)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov1 = 0;
 		int prov2 = 0;
 		for (int i = 0; i < 13; i++)
@@ -259,10 +259,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//Õ¨µ¯ÀàĞÍ-·ÇÍõÕ¨
+	//ç‚¸å¼¹ç±»å‹-éç‹ç‚¸
 	if (nCount == 4)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov = 0;
 		for (int i = 0; i < 13; i++)
 		{
@@ -278,7 +278,7 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//ÍõÕ¨ÀàĞÍ  
+	//ç‹ç‚¸ç±»å‹  
 	if (nCount == 2)
 	{
 		if (CardList[13] > 0 && CardList[14] > 0)
@@ -288,10 +288,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//µ¥Á¬ÀàĞÍ  
+	//å•è¿ç±»å‹  
 	if (nCount >= 5)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov = 0;
 		int i = 0;
 		for (; i < 12; i++)
@@ -317,10 +317,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//¶ÔÁ¬ÀàĞÍ  
+	//å¯¹è¿ç±»å‹  
 	if (nCount >= 6)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov = 0;
 		int i;
 		for (i = 0; i < 12; i++)
@@ -346,10 +346,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//·É»ú²»´ø  
+	//é£æœºä¸å¸¦  
 	if (nCount >= 6)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov = 0;
 
 		int SumValue = 0;
@@ -377,10 +377,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 			return retCardGroupData;
 		}
 	}
-	//·É»ú´øµ¥ÅÆ 
+	//é£æœºå¸¦å•ç‰Œ 
 	if (nCount >= 8)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov1 = 0;
 		int prov2 = 0;
 		int i, j;
@@ -415,10 +415,10 @@ CardGroupData CardAction::CardsType(vector<int> Card)
 		}
 
 	}
-	//·É»ú´ø¶Ô×ÓÀàĞÍ  
+	//é£æœºå¸¦å¯¹å­ç±»å‹  
 	if (nCount >= 10)
 	{
-		//ÓÃÓÚÑéÖ¤µÄ±äÁ¿  
+		//ç”¨äºéªŒè¯çš„å˜é‡  
 		int prov1 = 0;
 		int prov2 = 0;
 		int i, j;
@@ -463,12 +463,12 @@ void CardAction::changeNowCard()
 	NowCardGroup.nMaxCard = PutCardType.nMaxCard;
 }
 
-void CardAction::ClearPutCard()//³öÅÆºó£¬Çå¿ÕÔ­Ñ¡ÖĞµÄÅÆ
+void CardAction::ClearPutCard()//å‡ºç‰Œåï¼Œæ¸…ç©ºåŸé€‰ä¸­çš„ç‰Œ
 {
 	color_PutCard.clear();
 }
 
-void CardAction::Arrange()//ÕûÀíÏÖÓĞÊÖÅÆ
+void CardAction::Arrange()//æ•´ç†ç°æœ‰æ‰‹ç‰Œ
 {
 	Sort(color_CardList);
 	CardCount = color_CardList.size();
@@ -483,16 +483,16 @@ void CardAction::getCardList()
 	}
 }
 
-void CardAction::copyTOtemp()//copy³¡ÉÏÅÆµ½temp
+void CardAction::copyTOtemp()//copyåœºä¸Šç‰Œåˆ°temp
 {
 	for (vector<int>::iterator iter = NowCard.begin(); iter != NowCard.end(); iter++)
 		temp.push_back(*iter);
 }
 
-bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
+bool CardAction::find_Cards()//æ ¹æ®tempç»™å‡ºä¸åŒçš„æç¤º
 {
 	CardGroupData tempCardGroup= CardsType(vector<int> temp);
-	if (tempCardGroup.cType = SINGLE_CARD)//µ¥ÅÆ
+	if (tempCardGroup.cType = SINGLE_CARD)//å•ç‰Œ
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 15; i++)
 		{
@@ -504,7 +504,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = DOUBLE_CARD)//¶Ô×Ó
+	else if (tempCardGroup.cType = DOUBLE_CARD)//å¯¹å­
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 15; i++)
 		{
@@ -517,7 +517,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = THREE_CARD)//Èı²»´ø
+	else if (tempCardGroup.cType = THREE_CARD)//ä¸‰ä¸å¸¦
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 12; i++)
 		{
@@ -531,7 +531,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = BOMB_CARD)//Õ¨µ¯-·ÇÍõÕ¨
+	else if (tempCardGroup.cType = BOMB_CARD)//ç‚¸å¼¹-éç‹ç‚¸
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
 		{
@@ -546,7 +546,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = THREE_ONE_CARD)//Èı´øÒ»
+	else if (tempCardGroup.cType = THREE_ONE_CARD)//ä¸‰å¸¦ä¸€
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
 		{
@@ -554,7 +554,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			{
 				for (int j = 0; j < 15; j++)
 				{
-					//Ñ¡³öÒ»ÕÅÒÔÉÏµÄÅÆÇÒ²»ÊÇÑ¡ÔñÈıÕÅµÄÄÇ¸öÅÆ  
+					//é€‰å‡ºä¸€å¼ ä»¥ä¸Šçš„ç‰Œä¸”ä¸æ˜¯é€‰æ‹©ä¸‰å¼ çš„é‚£ä¸ªç‰Œ  
 					if (HandCardList[j] > 0 && j != i)
 					{
 						temp.clear();
@@ -568,7 +568,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = THREE_TWO_CARD)//Èı´ø¶Ô
+	else if (tempCardGroup.cType = THREE_TWO_CARD)//ä¸‰å¸¦å¯¹
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
 		{
@@ -576,7 +576,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			{
 				for (int j = 0; j < 13; j++)
 				{
-					//Ñ¡³öÒ»ÕÅÒÔÉÏµÄÅÆÇÒ²»ÊÇÑ¡ÔñÈıÕÅµÄÄÇ¸öÅÆ  
+					//é€‰å‡ºä¸€å¼ ä»¥ä¸Šçš„ç‰Œä¸”ä¸æ˜¯é€‰æ‹©ä¸‰å¼ çš„é‚£ä¸ªç‰Œ  
 					if (HandCardList[j] > 1 && j != i)
 					{
 						temp.clear();
@@ -591,7 +591,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = BOMB_TWO_CARD)//ËÄ´øÁ½µ¥
+	else if (tempCardGroup.cType = BOMB_TWO_CARD)//å››å¸¦ä¸¤å•
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
 		{
@@ -599,10 +599,10 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			{
 				for (int j = 0; j < 15; j++)
 				{
-					//ÏÈÑ¡³öÒ»ÕÅÒÔÉÏµÄÅÆÇÒ²»ÊÇÑ¡ÔñËÄÕÅµÄÄÇ¸öÅÆ  
+					//å…ˆé€‰å‡ºä¸€å¼ ä»¥ä¸Šçš„ç‰Œä¸”ä¸æ˜¯é€‰æ‹©å››å¼ çš„é‚£ä¸ªç‰Œ  
 					if (HandCardList[j] > 0 && j != i)
 					{
-						//ÔÙÑ¡³öÒ»ÕÅÒÔÉÏµÄÅÆÇÒ²»ÊÇÑ¡ÔñËÄÕÅµÄÄÇ¸öÅÆÇÒ²»ÊÇµÚÒ»´ÎÑ¡µÄÄÇ¸öÅÆ£¨²ßÂÔÀïËÄ´ø¶ş²»´øÒ»¶Ô£©  
+						//å†é€‰å‡ºä¸€å¼ ä»¥ä¸Šçš„ç‰Œä¸”ä¸æ˜¯é€‰æ‹©å››å¼ çš„é‚£ä¸ªç‰Œä¸”ä¸æ˜¯ç¬¬ä¸€æ¬¡é€‰çš„é‚£ä¸ªç‰Œï¼ˆç­–ç•¥é‡Œå››å¸¦äºŒä¸å¸¦ä¸€å¯¹ï¼‰  
 						for (int k = j + 1; k < 15; k++)
 						{
 							if (HandCardList[k] > 0 && k != i)
@@ -622,7 +622,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = BOMB_TWOOO_CARD)//ËÄ´øÁ½¶Ô
+	else if (tempCardGroup.cType = BOMB_TWOOO_CARD)//å››å¸¦ä¸¤å¯¹
 	{
 		for (int i = tempCardGroup.nMaxCard + 1; i < 13; i++)
 		{
@@ -630,10 +630,10 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			{
 				for (int j = 0; j < 15; j++)
 				{
-					//ÏÈÑ¡³öÁ½ÕÅÒÔÉÏµÄÅÆÇÒ²»ÊÇÑ¡ÔñËÄÕÅµÄÄÇ¸öÅÆ  
+					//å…ˆé€‰å‡ºä¸¤å¼ ä»¥ä¸Šçš„ç‰Œä¸”ä¸æ˜¯é€‰æ‹©å››å¼ çš„é‚£ä¸ªç‰Œ  
 					if (HandCardList[j] > 1 && j != i)
 					{
-						//ÔÙÑ¡³öÁ½ÕÅÕÅÒÔÉÏµÄÅÆÇÒ²»ÊÇÑ¡ÔñËÄÕÅµÄÄÇ¸öÅÆÇÒ²»ÊÇµÚÒ»´ÎÑ¡µÄÄÇ¸öÅÆ  
+						//å†é€‰å‡ºä¸¤å¼ å¼ ä»¥ä¸Šçš„ç‰Œä¸”ä¸æ˜¯é€‰æ‹©å››å¼ çš„é‚£ä¸ªç‰Œä¸”ä¸æ˜¯ç¬¬ä¸€æ¬¡é€‰çš„é‚£ä¸ªç‰Œ  
 						for (int k = j + 1; k < 15; k++)
 						{
 							if (HandCardList[k] > 1 && k != i)
@@ -655,12 +655,12 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = CONNECT_CARD)//µ¥Á¬
+	else if (tempCardGroup.cType = CONNECT_CARD)//å•è¿
 	{
-		int prov = 0;//ÓÃÓÚÑéÖ¤µÄ±äÁ¿
+		int prov = 0;//ç”¨äºéªŒè¯çš„å˜é‡
 		int start;
-		int end;   //¼ÇÂ¼¿ªÊ¼Óë½áÊø
-		int length = tempCardGroup.nCount;//µ¥Á¬³¤¶È
+		int end;   //è®°å½•å¼€å§‹ä¸ç»“æŸ
+		int length = tempCardGroup.nCount;//å•è¿é•¿åº¦
 		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
 		{
 			if (HandCardList[i] > 0)
@@ -684,13 +684,13 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = COMPANY_CARD)//Á¬¶Ó
+	else if (tempCardGroup.cType = COMPANY_CARD)//è¿é˜Ÿ
 	{
-		int prov = 0;//ÓÃÓÚÑéÖ¤µÄ±äÁ¿
+		int prov = 0;//ç”¨äºéªŒè¯çš„å˜é‡
 		int start;
 		int end;
-		int length = tempCardGroup.nCount/2;//µ¥Á¬³¤¶È
-		//2ÓëÍõ²»²ÎÓë·É»ú£¬´Óµ±Ç°ÒÑ´ò³öµÄ·É»ú×îĞ¡ÅÆÖµ+1¿ªÊ¼±éÀú  
+		int length = tempCardGroup.nCount/2;//å•è¿é•¿åº¦
+		//2ä¸ç‹ä¸å‚ä¸é£æœºï¼Œä»å½“å‰å·²æ‰“å‡ºçš„é£æœºæœ€å°ç‰Œå€¼+1å¼€å§‹éå†  
 		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
 		{
 			if (HandCardList[i] > 1)
@@ -716,13 +716,13 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 		}
 				
 	}
-	else if (tempCardGroup.cType = AIRCRAFT_CARD)//·É»ú²»´ø
+	else if (tempCardGroup.cType = AIRCRAFT_CARD)//é£æœºä¸å¸¦
 	{
 		int prov = 0;  
-		int start_i = 0;//·É»úÆğµã
-		int end_i = 0;//·É»úÖÕµã
-		int length = clsGameSituation.uctNowCardGroup.nCount / 3;//·É»ú³¤¶È  
-		//2ÓëÍõ²»²ÎÓë·É»ú£¬´Óµ±Ç°ÒÑ´ò³öµÄ·É»ú×îĞ¡ÅÆÖµ+1¿ªÊ¼±éÀú  
+		int start_i = 0;//é£æœºèµ·ç‚¹
+		int end_i = 0;//é£æœºç»ˆç‚¹
+		int length = clsGameSituation.uctNowCardGroup.nCount / 3;//é£æœºé•¿åº¦  
+		//2ä¸ç‹ä¸å‚ä¸é£æœºï¼Œä»å½“å‰å·²æ‰“å‡ºçš„é£æœºæœ€å°ç‰Œå€¼+1å¼€å§‹éå†  
 		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
 		{
 			if (HandCardList[i] > 2)
@@ -748,17 +748,17 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = AIRCRAFT_SINGLE_CARD)//·É»ú´øµ¥ÅÆ
+	else if (tempCardGroup.cType = AIRCRAFT_SINGLE_CARD)//é£æœºå¸¦å•ç‰Œ
 	{
-		//ÑéÖ¤·É»úµÄ±êÖ¾  
+		//éªŒè¯é£æœºçš„æ ‡å¿—  
 		int prov = 0;
-		//·É»úÆğµã  
+		//é£æœºèµ·ç‚¹  
 		int start_i = 0;
-		//·É»úÖÕµã  
+		//é£æœºç»ˆç‚¹  
 		int end_i = 0;
-		//·É»ú³¤¶È  
+		//é£æœºé•¿åº¦  
 		int length = clsGameSituation.uctNowCardGroup.nCount / 4;
-		//2ÓëÍõ²»²ÎÓë·É»ú£¬´Óµ±Ç°ÒÑ´ò³öµÄ·É»ú×îĞ¡ÅÆÖµ+1¿ªÊ¼±éÀú  
+		//2ä¸ç‹ä¸å‚ä¸é£æœºï¼Œä»å½“å‰å·²æ‰“å‡ºçš„é£æœºæœ€å°ç‰Œå€¼+1å¼€å§‹éå†  
 		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
 		{
 			if (HandCardList[i] > 2)
@@ -773,8 +773,8 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			{
 				end_i = i;
 				start_i = i - length + 1;
-				//¿¼ÂÇµ½µ±·É»ú³¤¶ÈÒ²¾ÍÊÇÔÚ2-4Ö®¼ä£¬ËùÒÔ×öÈı¸ö·ÖÖ§´¦Àí
-				//ÎªÁ½Á¬·É»ú  
+				//è€ƒè™‘åˆ°å½“é£æœºé•¿åº¦ä¹Ÿå°±æ˜¯åœ¨2-4ä¹‹é—´ï¼Œæ‰€ä»¥åšä¸‰ä¸ªåˆ†æ”¯å¤„ç†
+				//ä¸ºä¸¤è¿é£æœº  
 				if (length == 2)
 				{
 					for (int j = 0; j < 15; j++)
@@ -800,7 +800,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 						}
 					}
 				}
-				//ÎªÈıÁ¬·É»ú
+				//ä¸ºä¸‰è¿é£æœº
 				if (length == 3)
 				{
 					for (int j = 0; j < 15; j++)
@@ -833,7 +833,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 						}
 					}
 				}
-				//ÎªËÄÁ¬·É»ú
+				//ä¸ºå››è¿é£æœº
 				if (length == 4)
 				{
 					for (int j = 0; j < 15; j++)
@@ -876,18 +876,18 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	else if (tempCardGroup.cType = AIRCRAFT_DOUBLE_CARD)//·É»ú´ø¶Ô×Ó
+	else if (tempCardGroup.cType = AIRCRAFT_DOUBLE_CARD)//é£æœºå¸¦å¯¹å­
 	{
 
-		//ÑéÖ¤·É»úµÄ±êÖ¾  
+		//éªŒè¯é£æœºçš„æ ‡å¿—  
 		int prov = 0;
-		//·É»úÆğµã  
+		//é£æœºèµ·ç‚¹  
 		int start_i = 0;
-		//·É»úÖÕµã  
+		//é£æœºç»ˆç‚¹  
 		int end_i = 0;
-		//·É»ú³¤¶È  
+		//é£æœºé•¿åº¦  
 		int length = clsGameSituation.uctNowCardGroup.nCount / 4;
-		//2ÓëÍõ²»²ÎÓë·É»ú£¬´Óµ±Ç°ÒÑ´ò³öµÄ·É»ú×îĞ¡ÅÆÖµ+1¿ªÊ¼±éÀú  
+		//2ä¸ç‹ä¸å‚ä¸é£æœºï¼Œä»å½“å‰å·²æ‰“å‡ºçš„é£æœºæœ€å°ç‰Œå€¼+1å¼€å§‹éå†  
 		for (int i = tempCardGroup.nMaxCard - length + 2; i < 12; i++)
 		{
 			if (HandCardList[i] > 2)
@@ -902,8 +902,8 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			{
 				end_i = i;
 				start_i = i - length + 1;
-				//¿¼ÂÇµ½µ±·É»ú³¤¶ÈÒ²¾ÍÊÇÔÚ2-3Ö®¼ä£¬ËùÒÔ×öÁ½¸ö·ÖÖ§´¦Àí
-				//ÎªÁ½Á¬·É»ú  
+				//è€ƒè™‘åˆ°å½“é£æœºé•¿åº¦ä¹Ÿå°±æ˜¯åœ¨2-3ä¹‹é—´ï¼Œæ‰€ä»¥åšä¸¤ä¸ªåˆ†æ”¯å¤„ç†
+				//ä¸ºä¸¤è¿é£æœº  
 				if (length == 2)
 				{
 					for (int j = 0; j < 15; j++)
@@ -931,7 +931,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 						}
 					}
 				}
-				//ÎªÈıÁ¬·É»ú
+				//ä¸ºä¸‰è¿é£æœº
 				if (length == 3)
 				{
 					for (int j = 0; j < 15; j++)
@@ -970,7 +970,7 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 			}
 		}
 	}
-	//Ö±½Ó³öÕ¨µ¯
+	//ç›´æ¥å‡ºç‚¸å¼¹
 	else if (tempCardGroup.cType != BOMB_CARD && tempCardGroup.cType != KING_CARD)
 	{
 		for (int i = 0; i < 13; i++)
@@ -989,9 +989,40 @@ bool CardAction::find_Cards()//¸ù¾İtemp¸ø³ö²»Í¬µÄÌáÊ¾
 	return false;
 }
 
-//µã»÷ÌáÊ¾¾Ícopy³¡ÉÏÅÆ£¬µ÷ÓÃfind_Cardsº¯Êı£¬°Ñtemp´«µİµ½PutCard,Èç¹û¼ÌĞøµãÌáÊ¾£¬¾ÍÔÙ´Îµ÷ÓÃfind_Cardsº¯Êı£¬°Ñtemp´«µİµ½PutCard
+//ç‚¹å‡»æç¤ºå°±copyåœºä¸Šç‰Œï¼Œè°ƒç”¨find_Cardså‡½æ•°ï¼ŒæŠŠtempä¼ é€’åˆ°PutCard,å¦‚æœç»§ç»­ç‚¹æç¤ºï¼Œå°±å†æ¬¡è°ƒç”¨find_Cardså‡½æ•°ï¼ŒæŠŠtempä¼ é€’åˆ°PutCard
 void CardAction::tempTOput()
 {
 	for (vector<int>::iterator iter = temp.begin(); iter != temp.end(); iter++)
 		color_PutCard.push_back(*iter);
+}
+bool CardAction::JudgePutCard()//åˆ¤æ–­ç©å®¶é€‰ä¸­çš„ç‰Œæ˜¯å¦å¯ä»¥å‡ºï¼ˆä¸»åŠ¨å‡ºç‰Œï¼‰ 
+{
+	CardGroupData PutCardGroup=CardsType(vector<int> color_PutCard);
+	CardGroupData NowCardGroup = CardsType(vector<int> NowCard);
+	if (PutCardGroup.cType == NowCardGroup.cType)//é€‰ä¸­çš„ç‰Œå’Œå½“å‰çš„ç‰Œä¸ºåŒç±»å‹
+	{
+		if (PutCardGroup.nMaxCard > NowCardGroup.nMaxCard)
+			return true;
+		else
+			return false;
+	}
+	else if (PutCardGroup.cType == BOMB_CARD || PutCardGroup.cType == KING_CARD)//é€‰ä¸­ç‰Œä¸ºç‚¸å¼¹
+	{
+		if (NowCardGroup.cType == KING_CARD)
+			return false;
+		else
+			return true;//å½“å‰ç‰Œä¸æ˜¯ç‚¸å¼¹
+	}
+	else
+		return false;
+}
+
+bool CardAction::iJudgePutCard()//åˆ¤æ–­ç©å®¶é€‰ä¸­çš„ç‰Œæ˜¯å¦å¯ä»¥å‡ºï¼ˆä¸»åŠ¨å‡ºç‰Œï¼‰
+{
+	CardGroupData PutCardGroup = CardsType(vector<int> color_PutCard);
+	if (PutCardGroup.cType != ERROR_CARD)
+	{
+		return true;
+	}
+	return false;
 }
