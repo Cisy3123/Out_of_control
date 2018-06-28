@@ -20,9 +20,9 @@
 ## 玩法介绍
 > ![photo](http://r.photo.store.qq.com/psb?/V13UvKcT1vkCkM/RUsNiQExvy*Prifxrxpyq1UtqaeXSiemJLcprmbMGz0!/r/dFYAAAAAAAAA)
 > 进入游戏界面后点击【进入游戏】，开始新游戏。
-
+>
 > 发牌完成后，玩家首先选择是否叫地主，若【叫地主】，则玩家是地主；若选择【不叫】，则随机一个电脑玩家为地主。
-
+>
 > 游戏过程中，若玩家手牌中有能大过上家出的牌时，【提示】按钮可选，若无则不可选。
-
+>
 > 最先出完牌的一方获胜。
