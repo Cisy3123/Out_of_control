@@ -151,6 +151,23 @@ auto jiaodizhu = MenuItemImage::create(
 			this->addChild(npc2Card, 0);
 		}
 	}
+	
+		for (int p= 0; p< 17; ++p)
+	{
+		auto  playCard = Sprite::create("lord_card.png");
+		if (playCard == nullptr)
+		{
+			problemLoading("lord_card.png");
+		}
+		else
+		{
+			// position the sprite on the center of the screen
+			playCard->setPosition(Vec2((visibleSize.width / 4) + origin.x+30+40*p, visibleSize.height / 6));
+
+			// add the sprite as a child to this layer
+			this->addChild(playCard, 0);
+		}
+	}
 
 	for (int k= 3; k<=5; ++k)
 	{
