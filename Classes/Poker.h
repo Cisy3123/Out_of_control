@@ -23,7 +23,7 @@ public:
 	void SelectPkSuoTou();//如果选择了牌就缩头
 private:
 	CC_SYNTHESIZE(bool, m_isSelect, Select);//是否已选
-	CC_SYNTHESIZE(MainScene*, m_mainscene, GameMain);
+	CC_SYNTHESIZE(GameScene*, m_gameMain, GameMain);
 	CC_SYNTHESIZE(bool, m_isDianJi, DianJi);//是否能被点击
 	CC_SYNTHESIZE(int, m_Suit, Suit);//花色
 	CC_SYNTHESIZE(int, m_num, Num);//牌值
