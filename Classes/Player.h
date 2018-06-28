@@ -7,7 +7,6 @@ class Player :public CCObject
 public:
 	Player();
 	~Player();
-	void call();//叫地主
 private:
 	CC_SYNTHESIZE(bool, m_isLord, IsLord);//是否为地主
 	CC_SYNTHESIZE(bool, m_isCall, Call);//是否已叫地主
