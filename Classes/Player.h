@@ -9,18 +9,14 @@ class Player : public CCObject
 public:
 	Player();
 	~Player();
-<<<<<<< HEAD:Classes/Player/Player.h
-	void updatePkWeiZhi();//ÉèÖÃÅÆµÄÎ»ÖÃ
-
-=======
->>>>>>> be0b47c8f2d34895abe1c9bcb3781cc72d987b96:Classes/Player.h
+	void updatePkWeiZhi();//è®¾ç½®ç‰Œçš„ä½ç½®
 private:
-	CC_SYNTHESIZE(bool, m_isDiZhu, IsDiZhu);//ÊÇ·ñÎªµØÖ÷
-	CC_SYNTHESIZE(bool, m_isCall, Call);//ÊÇ·ñÒÑ½ĞµØÖ÷
-	CC_SYNTHESIZE(int, m_iCallNum, CallNum);//½ĞµØÖ÷µÄ·ÖÊı
-	CC_SYNTHESIZE(CCArray*, m_arrPk, ArrPk);//ÊÖÀïÓµÓĞµÄÆË¿ËÅÆ
-	CC_SYNTHESIZE(CCPoint, m_point, Point);//ÅÆÔÚ×ÀÃæµÄ³õÊ¼Î»ÖÃ
-	CC_SYNTHESIZE(int, m_iPlayerClass, PlayerClass);//Íæ¼ÒÖÖÀà:0ÎªÍæ¼Ò£¬1ÎªµçÄÔ£¬2ÎªÏÔÊ¾µÄÈıÕÅÅÆ,3ÎªÍæ¼ÒÒª³öµÄÅÆ£¬4ÎªµçÄÔ1Òª³öµÄÅÆ£¬5ÎªµçÄÔ2Òª³öµÄÅÆ
-	std::vector<PaiXing> m_vecPX;//±£´æÅÆĞÍ
-	CC_SYNTHESIZE(bool, m_isOutPk, IsOutPk);//Íæ¼ÒÊÇ·ñ³öÅÆtrue:³ö false:²»³ö
+	CC_SYNTHESIZE(bool, m_isDiZhu, IsDiZhu);//æ˜¯å¦ä¸ºåœ°ä¸»
+	CC_SYNTHESIZE(bool, m_isCall, Call);//æ˜¯å¦å·²å«åœ°ä¸»
+	CC_SYNTHESIZE(int, m_iCallNum, CallNum);//å«åœ°ä¸»çš„åˆ†æ•°
+	CC_SYNTHESIZE(CCArray*, m_arrPk, ArrPk);//æ‰‹é‡Œæ‹¥æœ‰çš„æ‰‘å…‹ç‰Œ
+	CC_SYNTHESIZE(CCPoint, m_point, Point);//ç‰Œåœ¨æ¡Œé¢çš„åˆå§‹ä½ç½®
+	CC_SYNTHESIZE(int, m_iPlayerClass, PlayerClass);//ç©å®¶ç§ç±»:0ä¸ºç©å®¶ï¼Œ1ä¸ºç”µè„‘ï¼Œ2ä¸ºæ˜¾ç¤ºçš„ä¸‰å¼ ç‰Œ,3ä¸ºç©å®¶è¦å‡ºçš„ç‰Œï¼Œ4ä¸ºç”µè„‘1è¦å‡ºçš„ç‰Œï¼Œ5ä¸ºç”µè„‘2è¦å‡ºçš„ç‰Œ
+	std::vector<PaiXing> m_vecPX;//ä¿å­˜ç‰Œå‹
+	CC_SYNTHESIZE(bool, m_isOutPk, IsOutPk);//ç©å®¶æ˜¯å¦å‡ºç‰Œtrue:å‡º false:ä¸å‡º
 };
