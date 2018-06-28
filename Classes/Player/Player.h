@@ -1,16 +1,23 @@
 #pragma once
 #include "cocos2d.h"
-#include "CardAction.h"
+#include "MainScene.h"
+
 USING_NS_CC;
-class Player :public CCObject
+
+class Player : public CCObject
 {
 public:
 	Player();
 	~Player();
-	void call();//å«åœ°ä¸»
+	void updatePkWeiZhi();//ÉèÖÃÅÆµÄÎ»ÖÃ
+
 private:
-	CC_SYNTHESIZE(bool, m_isLord, IsLord);//æ˜¯å¦ä¸ºåœ°ä¸»
-	CC_SYNTHESIZE(bool, m_isCall, Call);//æ˜¯å¦å·²å«åœ°ä¸»
-	CC_SYNTHESIZE(int, m_iCallNum, CallNum);//å«åœ°ä¸»çš„åˆ†æ•°
-	CC_SYNTHESIZE(bool, m_isOutPk, IsOutPk);//ç©å®¶æ˜¯å¦å‡ºç‰Œtrue:å‡º false:ä¸å‡º
-}
+	CC_SYNTHESIZE(bool, m_isDiZhu, IsDiZhu);//ÊÇ·ñÎªµØÖ÷
+	CC_SYNTHESIZE(bool, m_isCall, Call);//ÊÇ·ñÒÑ½ĞµØÖ÷
+	CC_SYNTHESIZE(int, m_iCallNum, CallNum);//½ĞµØÖ÷µÄ·ÖÊı
+	CC_SYNTHESIZE(CCArray*, m_arrPk, ArrPk);//ÊÖÀïÓµÓĞµÄÆË¿ËÅÆ
+	CC_SYNTHESIZE(CCPoint, m_point, Point);//ÅÆÔÚ×ÀÃæµÄ³õÊ¼Î»ÖÃ
+	CC_SYNTHESIZE(int, m_iPlayerClass, PlayerClass);//Íæ¼ÒÖÖÀà:0ÎªÍæ¼Ò£¬1ÎªµçÄÔ£¬2ÎªÏÔÊ¾µÄÈıÕÅÅÆ,3ÎªÍæ¼ÒÒª³öµÄÅÆ£¬4ÎªµçÄÔ1Òª³öµÄÅÆ£¬5ÎªµçÄÔ2Òª³öµÄÅÆ
+	std::vector<PaiXing> m_vecPX;//±£´æÅÆĞÍ
+	CC_SYNTHESIZE(bool, m_isOutPk, IsOutPk);//Íæ¼ÒÊÇ·ñ³öÅÆtrue:³ö false:²»³ö
+};
