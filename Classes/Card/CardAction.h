@@ -3,6 +3,7 @@
 #include "CardSet.h"
 #include"Player.h"
 #include <vector>
+using namespace std;
 USING_NS_CC;
 
 class CardAction
@@ -10,8 +11,6 @@ class CardAction
 public:
 	CardAction();
 	~CardAction();
-	bool shuffle();//洗牌
-	void deal();//发牌
 	void Sort(vector<int> &arr);//整理牌
 	CardGroupData CardsType(vector<int> Card); //给出牌型组合
 	void changeNowCard();//出牌后，更新当前打出的牌
