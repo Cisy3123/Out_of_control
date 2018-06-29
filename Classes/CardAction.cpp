@@ -995,11 +995,11 @@ void CardAction::tempTOput()
 	for (vector<int>::iterator iter = temp.begin(); iter != temp.end(); iter++)
 		color_PutCard.push_back(*iter);
 }
-bool CardAction::JudgePutCard()//判断玩家选中的牌是否可以出（主动出牌） 
+bool CardAction::JudgePutCard()//判断玩家选中的牌是否可以出（被动出牌） 
 {
 	CardGroupData PutCardGroup=CardsType(vector<int> color_PutCard);
 	CardGroupData NowCardGroup = CardsType(vector<int> NowCard);
-	if (PutCardGroup.cType == NowCardGroup.cType)//选中的牌和当前的牌为同类型
+	if (PutCardGroup.cType == NowCardGroup.cType&&PutCardGroup.nCount==NowCardGroup.nCount)//选中的牌和当前的牌为同类型
 	{
 		if (PutCardGroup.nMaxCard > NowCardGroup.nMaxCard)
 			return true;
